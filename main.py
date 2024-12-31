@@ -1,7 +1,7 @@
 import datetime
 from read_csv import read_csv
-from bruteforce import find_best_stock as bruteforce_solution
-from optimized import find_best_stock as optimized_solution
+from bruteforce import find_best_stocks as bruteforce_solution
+from optimized import find_best_stocks as optimized_solution
 
 
 def main():
@@ -19,18 +19,19 @@ def main():
         user_choice = input(
             "Choisissez la solution : 'bruteforce' (1) ou 'optimisée' (2): "
         )
-        if user_choice == "1":
-            selected_actions, total_cost, total_profit = bruteforce_solution(
-                data, budget
-            )
-            break
-        elif user_choice == "2":
-            selected_actions, total_cost, total_profit = optimized_solution(
-                data, budget
-            )
-            break
-        else:
-            print("Choix invalide. Veuillez entrer '1' ou '2'.")
+        match user_choice:
+            case "1":
+                selected_actions, total_cost, total_profit = bruteforce_solution(
+                    data, budget
+                )
+                break
+            case "2":
+                selected_actions, total_cost, total_profit = optimized_solution(
+                    data, budget
+                )
+                break
+            case _:
+                print("Choix invalide. Veuillez entrer '1' ou '2'.")
 
     print(f"\nActions choisies: {selected_actions}")
     print(f"Coût total: {total_cost}€")
