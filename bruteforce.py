@@ -1,11 +1,11 @@
 from itertools import combinations
 
 
-def find_best_stock(data, budget):
+def find_best_stocks(data, budget):
     best_profit = 0
     best_combination = []
 
-    for i in range(1, len(data) + 1):
+    for i in range(len(data)):
         all_combinations = combinations(data, i)
 
         for combination in all_combinations:
@@ -20,6 +20,7 @@ def find_best_stock(data, budget):
 
     selected_stocks = [stock["stock"] for stock in best_combination]
     total_cost = sum(stock["price"] for stock in best_combination)
+
     return (
         selected_stocks,
         round(total_cost, 2),
