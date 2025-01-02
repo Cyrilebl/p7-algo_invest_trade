@@ -1,13 +1,14 @@
 import datetime
-from read_csv import read_csv
-from bruteforce import find_best_stocks as bruteforce_solution
-from optimized import find_best_stocks as optimized_solution
+from src.read_csv import read_csv
+from src.bruteforce import find_best_stocks as bruteforce_solution
+from src.optimized import find_best_stocks as optimized_solution
+from src.data_table import data_table
 
 
 def main():
     start_time = datetime.datetime.now()
 
-    file_name = "dataset1.csv"
+    file_name = "data/dataset3.csv"
     stock_column = "name"
     price_column = "price"
     profit_column = "profit"
@@ -33,8 +34,9 @@ def main():
             case _:
                 print("Choix invalide. Veuillez entrer '1' ou '2'.")
 
-    print(f"\nActions choisies: {selected_actions}")
-    print(f"Coût total: {total_cost}€")
+    print(f"\nActions choisies:")
+    data_table(selected_actions)
+    print(f"\nCoût total: {total_cost}€")
     print(f"Profit total (après 2 ans): {total_profit}€")
 
     end_time = datetime.datetime.now()

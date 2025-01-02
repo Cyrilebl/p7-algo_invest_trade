@@ -1,17 +1,17 @@
 def find_best_stocks(data, budget):
-    for action in data:
-        ratio = action["profit"] / action["price"]
-        action["ratio"] = ratio
-
     selected_actions = []
     total_cost = 0
     total_profit = 0
+
+    for action in data:
+        ratio = action["profit"] / action["price"]
+        action["ratio"] = ratio
 
     sorted_data = sorted(data, key=lambda x: x["ratio"], reverse=True)
     for action in sorted_data:
         cost = action["price"]
         if budget >= cost:
-            selected_actions.append(action["stock"])
+            selected_actions.append(action)
             budget -= cost
             total_cost += cost
             total_profit += cost * action["profit"]
@@ -22,15 +22,14 @@ def find_best_stocks(data, budget):
 """
 Début
 Fonction find_best_stocks(données, budget):
-
-    Pour chaque action dans les données :
-        Calculer le ratio = profit / prix
-        Ajouter ce ratio à l'action (clé "ratio")
-        
     Initialiser :
         - selected_actions comme une liste vide pour stocker les actions sélectionnées
         - total_cost à 0 pour le coût total des actions sélectionnées
         - total_profit à 0 pour le profit total des actions sélectionnées
+
+    Pour chaque action dans les données :
+        Calculer le ratio = profit / prix
+        Ajouter ce ratio à l'action (clé "ratio")
 
     Trier les données par ratio (ordre décroissant)
 

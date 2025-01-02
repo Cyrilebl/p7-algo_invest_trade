@@ -18,7 +18,7 @@ def find_best_stocks(data, budget):
                 best_profit = total_profit
                 best_combination = combination
 
-    selected_stocks = [stock["stock"] for stock in best_combination]
+    selected_stocks = [stock for stock in best_combination]
     total_cost = sum(stock["price"] for stock in best_combination)
 
     return (
