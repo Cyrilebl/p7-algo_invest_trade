@@ -13,7 +13,7 @@ def main():
     price_column = "price"
     profit_column = "profit"
 
-    data = read_csv(file_name, stock_column, price_column, profit_column)
+    data, outliers = read_csv(file_name, stock_column, price_column, profit_column)
     budget = 500
 
     while True:
@@ -38,6 +38,10 @@ def main():
     data_table(selected_actions)
     print(f"\nCoût total: {total_cost}€")
     print(f"Profit total (après 2 ans): {total_profit}€")
+    print(f"\nNombre d'actions choisies: {len(selected_actions)}")
+    print(f"Nombre de valeurs aberrantes: {len(outliers)}")
+    print(f"Coût moyen d'une action: {round(total_cost / len(selected_actions),2)}€")
+    print(f"Profit moyen : {round((total_profit / total_cost) * 100, 2)}%")
 
     end_time = datetime.datetime.now()
     print(f"\nTemps d'exécution: {end_time - start_time}")
